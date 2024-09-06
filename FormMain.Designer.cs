@@ -45,6 +45,11 @@
             this.treeViewDB = new System.Windows.Forms.TreeView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.dataGridViewEditTable = new System.Windows.Forms.DataGridView();
+            this.ComboBoxTables = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btnSaveTable = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.panelControlBar.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -52,6 +57,8 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEditTable)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlBar
@@ -248,13 +255,18 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tabPage2.Controls.Add(this.btnCancel);
+            this.tabPage2.Controls.Add(this.btnSaveTable);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.ComboBoxTables);
+            this.tabPage2.Controls.Add(this.dataGridViewEditTable);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(973, 416);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Bearbeiten";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tabPage3
             // 
@@ -264,6 +276,67 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "SQL";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewEditTable
+            // 
+            this.dataGridViewEditTable.AllowUserToAddRows = false;
+            this.dataGridViewEditTable.AllowUserToDeleteRows = false;
+            this.dataGridViewEditTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewEditTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridViewEditTable.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridViewEditTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.dataGridViewEditTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewEditTable.Location = new System.Drawing.Point(6, 44);
+            this.dataGridViewEditTable.Name = "dataGridViewEditTable";
+            this.dataGridViewEditTable.ReadOnly = true;
+            this.dataGridViewEditTable.Size = new System.Drawing.Size(961, 339);
+            this.dataGridViewEditTable.TabIndex = 8;
+            // 
+            // ComboBoxTables
+            // 
+            this.ComboBoxTables.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxTables.FormattingEnabled = true;
+            this.ComboBoxTables.Location = new System.Drawing.Point(113, 11);
+            this.ComboBoxTables.Name = "ComboBoxTables";
+            this.ComboBoxTables.Size = new System.Drawing.Size(121, 25);
+            this.ComboBoxTables.TabIndex = 9;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(6, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 32);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Tabelle:";
+            // 
+            // btnSaveTable
+            // 
+            this.btnSaveTable.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSaveTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveTable.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveTable.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnSaveTable.Location = new System.Drawing.Point(791, 386);
+            this.btnSaveTable.Name = "btnSaveTable";
+            this.btnSaveTable.Size = new System.Drawing.Size(85, 27);
+            this.btnSaveTable.TabIndex = 39;
+            this.btnSaveTable.Text = "Speichern";
+            this.btnSaveTable.UseVisualStyleBackColor = false;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.Brown;
+            this.btnCancel.Location = new System.Drawing.Point(882, 386);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(85, 27);
+            this.btnCancel.TabIndex = 40;
+            this.btnCancel.Text = "Verwerfen";
+            this.btnCancel.UseVisualStyleBackColor = false;
             // 
             // FormMain
             // 
@@ -290,6 +363,9 @@
             this.tabPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEditTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -313,6 +389,11 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         internal System.Windows.Forms.Button btnSettings;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox ComboBoxTables;
+        private System.Windows.Forms.DataGridView dataGridViewEditTable;
+        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnSaveTable;
     }
 }
 

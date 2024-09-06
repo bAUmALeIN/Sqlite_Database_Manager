@@ -29,6 +29,12 @@ namespace Sqlite_Database_Manager
         private void FormSettings_Load(object sender, EventArgs e)
         {
             pictureBox1.Image = engine.scaleImage(20, 20, Properties.Resources.Logo);
+
+            if (Properties.Settings.Default.DBPATH != null && FormMain.loadDefault)
+            {
+                tbDbPfad.Text = Properties.Settings.Default.DBPATH;
+
+            }
         }
 
         private void Form_MouseDown(object sender, MouseEventArgs e)
@@ -77,9 +83,7 @@ namespace Sqlite_Database_Manager
             if (result == DialogResult.OK) {
                 var filePath = ofd.FileName;
                 tbDbPfad.Text = filePath;
-                // Abfragen ob DB im Programm gespeichert werden soll... wip 
-
-
+               
 
 
 
@@ -101,6 +105,20 @@ namespace Sqlite_Database_Manager
             connectionStringBuilder.DataSource = Config.dbPath;
             FormMain.logger.WriteLine($"Config.ConnectionString | {connectionStringBuilder.ConnectionString}");
             Config.ConnectionString = connectionStringBuilder.ConnectionString;
+
+            // Abfragen ob DB im Programm gespeichert werden soll... wip 
+            DialogResult resultSaveConnection = MessageBox.Show("Soll die Verbindung gespeichert werden ?","Speichern",MessageBoxButtons.OKCancel);
+            if (resultSaveConnection == DialogResult.OK)
+            {
+                Properties.Settings.Default.DBPATH = Config.dbPath;
+                Properties.Settings.Default.DBCONNECTIONSTRING = Config.ConnectionString;
+                Properties.Settings.Default.Save();
+                FormMain.logger.WriteLine($" SPEICHER VERBINDUNG | CONNECTIONSTRIN: {Properties.Settings.Default.DBCONNECTIONSTRING} | DBPATH: {Properties.Settings.Default.DBPATH}");
+            }
+            else
+            {
+
+            }
 
             this.Close();
         }

@@ -16,11 +16,10 @@ namespace Sqlite_Database_Manager
 {
     public partial class FormMain : Form
     {
-
-        private ConnectionManager connectionManager;
+        public static Logger logger;
+        public static ConnectionManager connectionManager;
+        public static bool loadDefault = false;
         private Engine engine;
-         public static Logger logger;
-
 
 
         private Point mouseOffset;
@@ -35,16 +34,33 @@ namespace Sqlite_Database_Manager
             logger = new Logger();
             engine = new Engine();
 
-            if (Config.logging)
+            if (Config.Showlogging)
             {
                 logger.Show();
             }
 
+            if (Properties.Settings.Default.DBCONNECTIONSTRING != null) {
+                logger.WriteLine($"MainLoad | ConnectionString gefunden: {Properties.Settings.Default.DBCONNECTIONSTRING}");
+                DialogResult resultUseSavedCon = MessageBox.Show("Soll die hinterlegte Verbindung geladen werden ?", "Verbindung gefunden", MessageBoxButtons.YesNo);
+                if (resultUseSavedCon == DialogResult.Yes)
+                {
+                    Config.ConnectionString = Properties.Settings.Default.DBCONNECTIONSTRING;
+                    loadDefault = true;
+                }
+                else
+                {
+
+
+                }
+
+            }
+
+
             if (checkDBexists() == true) {
+                Config.foundDB = true;
                 connectionManager = new ConnectionManager(Config.ConnectionString);
                 LoadDatabaseStructure();
                 this.StartPosition = FormStartPosition.CenterScreen;
-                Config.foundDB = true;
                 return;
             }
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -71,10 +87,10 @@ namespace Sqlite_Database_Manager
 
         private bool checkDBexists()
         {
-            
-            if (File.Exists(Config.dbPath))
+
+            if (File.Exists(Config.dbPath) || File.Exists(Properties.Settings.Default.DBPATH) && loadDefault == true)
             {
-                logger.WriteLine($"checkDBexists | DB gefunden unter: {Config.dbPath}");
+                logger.WriteLine($"checkDBexists | Config : DB gefunden unter: {Config.dbPath} || Properties : {Properties.Settings.Default.DBPATH}");
                 return true;
 
             }
@@ -149,6 +165,7 @@ namespace Sqlite_Database_Manager
                 var columnName = e.Node.Text;
                 DataTable columnData = connectionManager.GetColumnData(tableName, columnName);
                 dataGridView1.DataSource = columnData;
+                
             }
         }
 

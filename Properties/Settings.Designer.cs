@@ -34,5 +34,29 @@ namespace Sqlite_Database_Manager.Properties {
                 this["SILVER"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DBPATH {
+            get {
+                return ((string)(this["DBPATH"]));
+            }
+            set {
+                this["DBPATH"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DBCONNECTIONSTRING {
+            get {
+                return ((string)(this["DBCONNECTIONSTRING"]));
+            }
+            set {
+                this["DBCONNECTIONSTRING"] = value;
+            }
+        }
     }
 }

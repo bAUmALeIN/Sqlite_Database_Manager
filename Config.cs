@@ -9,7 +9,7 @@ namespace Sqlite_Database_Manager
 {
     public static class Config
     {
-        public const bool logging = true;
+        public const bool Showlogging = true;
 
 
         public static string ConnectionString = $"Data Source={dbPath};Version=3;";
