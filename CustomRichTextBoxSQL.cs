@@ -6,6 +6,7 @@ namespace Sqlite_Database_Manager
 {
     public class CustomRichTextBoxSQL : RichTextBox
     {
+        private readonly Color keywordColorData = Color.BlueViolet;
         private readonly Color keywordColor = Color.Blue;  // Farbe für SQL-Schlüsselwörter
         private readonly Color alternateLineColor = Color.LightGray; // Farbe für alternative Zeilen
         private readonly Color defaultTextColor = Color.Black; // Standardtextfarbe
@@ -34,7 +35,9 @@ namespace Sqlite_Database_Manager
 
         private void ApplySyntaxHighlighting()
         {
-            string[] keywords = new[] { "SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "DELETE", "JOIN", "LEFT", "RIGHT", "INNER", "OUTER", "NULL", "COUNT" };
+            Font syntaxF = new Font("Segeo UI", 8);
+            string[] keywords = new[] { "SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "DELETE", "JOIN", "LEFT", "RIGHT", "INNER", "OUTER", "NULL", "COUNT", "´NOT", "CREATE TABLE", "TRUE", "FALSE", "NOT", };
+            string[] keywordsData = new[] { "INTEGER", "REAL", "BLOB", "TEXT", "BOOL" };
             string text = this.Text;
 
             this.SelectAll();
@@ -47,6 +50,19 @@ namespace Sqlite_Database_Manager
                 {
                     this.Select(index, keyword.Length);
                     this.SelectionColor = keywordColor;
+                    this.SelectionFont = new Font(syntaxF, FontStyle.Bold);
+                    index += keyword.Length;
+                }
+            }
+
+            foreach (string keyword in keywordsData)
+            {
+                int index = 0;
+                while ((index = text.IndexOf(keyword, index, StringComparison.OrdinalIgnoreCase)) != -1)
+                {
+                    this.Select(index, keyword.Length);
+                    this.SelectionColor = keywordColorData;
+                    this.SelectionFont = new Font(syntaxF, FontStyle.Bold);
                     index += keyword.Length;
                 }
             }
@@ -54,6 +70,7 @@ namespace Sqlite_Database_Manager
             // Zurück zur Standardfarbe
             this.Select(this.TextLength, 0);
             this.SelectionColor = defaultTextColor;
+            this.SelectionFont = new Font(this.Font, FontStyle.Regular);
         }
 
         private void ApplyAlternateRowColor(Graphics graphics)

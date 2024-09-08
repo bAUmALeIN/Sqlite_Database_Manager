@@ -64,7 +64,7 @@ public class ConnectionManager
         return dt;
     }
 
-    public DataTable GetTableColumns(string tableName)          // nicht benötigt, iwann vllt
+    public DataTable GetTableColumns(string tableName)          
     {
         OpenConnection();
         DataTable columns = new DataTable();

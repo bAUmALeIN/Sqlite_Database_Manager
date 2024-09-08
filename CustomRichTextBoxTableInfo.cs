@@ -6,6 +6,7 @@ namespace Sqlite_Database_Manager
 {
     public class CustomRichTextBoxTableInfo : RichTextBox
     {
+        private readonly Color keywordColorData = Color.BlueViolet;
         private readonly Color keywordColor = Color.Blue;  // Farbe für SQL-Schlüsselwörter
         private readonly Color alternateLineColor = Color.LightGray; // Farbe für alternative Zeilen
         private readonly Color defaultTextColor = Color.Black; // Standardtextfarbe
@@ -14,95 +15,81 @@ namespace Sqlite_Database_Manager
         public CustomRichTextBoxTableInfo()
         {
             this.AcceptsTab = true;
-            this.Font = new Font("Segoe UI", 10);
+            this.Font = new Font("Consolas", 8);
             this.Multiline = true;
+            ApplySyntaxHighlighting();
         }
 
         protected override void OnTextChanged(EventArgs e)
         {
-            if (!isUpdating) // Verhindert Endlosschleifen beim Text-Update
-            {
-                isUpdating = true;
-                ApplySyntaxHighlighting();
-                ApplyAlternateRowColor();
-                isUpdating = false;
-            }
-
             base.OnTextChanged(e);
+            ApplySyntaxHighlighting();
+            Invalidate(); // Veranlasst das Steuerelement, sich neu zu zeichnen
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            ApplyAlternateRowColor(e.Graphics);
         }
 
         private void ApplySyntaxHighlighting()
         {
-            // Liste der SQL-Schlüsselwörter
-            string[] keywords = new[] { "SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "DELETE", "JOIN", "LEFT", "RIGHT", "INNER", "OUTER", "NULL", "COUNT" };
+            Font syntaxF = new Font("Segeo UI", 8);
+            string[] keywords = new[] { "SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "DELETE", "JOIN", "LEFT", "RIGHT", "INNER", "OUTER", "NULL", "COUNT", "´NOT", "CREATE TABLE", "TRUE", "FALSE", "NOT", };
+            string[] keywordsData = new[] { "INTEGER", "REAL", "BLOB", "TEXT", "BOOL" };
+            string text = this.Text;
 
-            int originalSelectionStart = this.SelectionStart;
-            int originalSelectionLength = this.SelectionLength;
-
-            // Temporäre Deaktivierung von Textänderungen zur Vermeidung von Flackern
-            this.SuspendLayout();
-
-            // Textfarbe auf Standardfarbe setzen
             this.SelectAll();
             this.SelectionColor = defaultTextColor;
 
-            // Durchsuche den Text nach Schlüsselwörtern
             foreach (string keyword in keywords)
             {
-                int start = 0;
-                while ((start = this.Text.IndexOf(keyword, start, StringComparison.OrdinalIgnoreCase)) != -1)
+                int index = 0;
+                while ((index = text.IndexOf(keyword, index, StringComparison.OrdinalIgnoreCase)) != -1)
                 {
-                    // Nur ganze Wörter hervorheben
-                    if ((start == 0 || !char.IsLetterOrDigit(this.Text[start - 1])) &&
-                        (start + keyword.Length == this.Text.Length || !char.IsLetterOrDigit(this.Text[start + keyword.Length])))
-                    {
-                        this.Select(start, keyword.Length);
-                        this.SelectionColor = keywordColor;
-                    }
-                    start += keyword.Length;
+                    this.Select(index, keyword.Length);
+                    this.SelectionColor = keywordColor;
+                    this.SelectionFont = new Font(syntaxF, FontStyle.Bold);
+                    index += keyword.Length;
+                }   
+            }
+
+            foreach (string keyword in keywordsData)
+            {
+                int index = 0;
+                while ((index = text.IndexOf(keyword, index, StringComparison.OrdinalIgnoreCase)) != -1)
+                {
+                    this.Select(index, keyword.Length);
+                    this.SelectionColor = keywordColorData;
+                    this.SelectionFont = new Font(syntaxF, FontStyle.Bold);
+                    index += keyword.Length;
                 }
             }
 
-            // Ursprüngliche Auswahl wiederherstellen
-            this.Select(originalSelectionStart, originalSelectionLength);
+            // Zurück zur Standardfarbe
+            this.Select(this.TextLength, 0);
             this.SelectionColor = defaultTextColor;
-
-            this.ResumeLayout(); // Layout-Wiederaufnahme
         }
 
-        private void ApplyAlternateRowColor()
+        private void ApplyAlternateRowColor(Graphics graphics)
         {
-            int originalSelectionStart = this.SelectionStart;
-            int originalSelectionLength = this.SelectionLength;
+            int lineCount = this.Lines.Length;
+            int lineHeight = this.Font.Height;
 
-            // Temporäre Deaktivierung von Textänderungen zur Vermeidung von Flackern
-            this.SuspendLayout();
-
-            // Markiere jede zweite Zeile mit der alternierenden Farbe
-            for (int i = 0; i < this.Lines.Length; i++)
+            // Hintergrundfarbe für jede Zeile zeichnen
+            for (int i = 0; i < lineCount; i++)
             {
-                int lineStartIndex = this.GetFirstCharIndexFromLine(i);
-                int lineLength = this.Lines[i].Length;
-
-                if (lineLength > 0) // Nur nicht-leere Zeilen einfärben
+                if (i % 2 != 0) // Jede zweite Zeile
                 {
-                    if (i % 2 != 0) // Jede zweite Zeile färben
+                    int start = this.GetPositionFromCharIndex(this.GetFirstCharIndexFromLine(i)).Y;
+                    int end = start + lineHeight;
+                    using (Brush brush = new SolidBrush(alternateLineColor))
                     {
-                        this.Select(lineStartIndex, lineLength);
-                        this.SelectionBackColor = alternateLineColor;
-                    }
-                    else
-                    {
-                        this.Select(lineStartIndex, lineLength);
-                        this.SelectionBackColor = this.BackColor; // Standard-Hintergrundfarbe für ungerade Zeilen
+                        graphics.FillRectangle(brush, 0, start, this.ClientSize.Width, lineHeight);
                     }
                 }
             }
-
-            // Ursprüngliche Auswahl wiederherstellen
-            this.Select(originalSelectionStart, originalSelectionLength);
-
-            this.ResumeLayout(); // Layout-Wiederaufnahme
         }
     }
 }

@@ -99,7 +99,7 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewColumInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewColumInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewColumInfo.Location = new System.Drawing.Point(3, 52);
+            this.dataGridViewColumInfo.Location = new System.Drawing.Point(13, 52);
             this.dataGridViewColumInfo.Name = "dataGridViewColumInfo";
             this.dataGridViewColumInfo.ReadOnly = true;
             this.dataGridViewColumInfo.RowHeadersVisible = false;
@@ -150,7 +150,7 @@
             this.labelTableName.AutoSize = true;
             this.labelTableName.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTableName.ForeColor = System.Drawing.Color.Brown;
-            this.labelTableName.Location = new System.Drawing.Point(194, 8);
+            this.labelTableName.Location = new System.Drawing.Point(194, 9);
             this.labelTableName.Name = "labelTableName";
             this.labelTableName.Size = new System.Drawing.Size(36, 25);
             this.labelTableName.TabIndex = 44;
@@ -196,6 +196,7 @@
             // customRichTextBoxTableInfo
             // 
             this.customRichTextBoxTableInfo.AcceptsTab = true;
+            this.customRichTextBoxTableInfo.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.customRichTextBoxTableInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.customRichTextBoxTableInfo.Location = new System.Drawing.Point(13, 263);
             this.customRichTextBoxTableInfo.Name = "customRichTextBoxTableInfo";

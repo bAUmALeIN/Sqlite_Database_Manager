@@ -217,11 +217,11 @@
             // labelInfoTextTable
             // 
             this.labelInfoTextTable.AutoSize = true;
-            this.labelInfoTextTable.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInfoTextTable.Font = new System.Drawing.Font("Segoe UI", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelInfoTextTable.ForeColor = System.Drawing.Color.Black;
             this.labelInfoTextTable.Location = new System.Drawing.Point(181, 14);
             this.labelInfoTextTable.Name = "labelInfoTextTable";
-            this.labelInfoTextTable.Size = new System.Drawing.Size(299, 13);
+            this.labelInfoTextTable.Size = new System.Drawing.Size(301, 13);
             this.labelInfoTextTable.TabIndex = 11;
             this.labelInfoTextTable.Text = "Doppelklick auf die Tabelle um Informatioen anzuzeigen";
             this.labelInfoTextTable.Visible = false;
@@ -488,7 +488,7 @@
             this.dataGridViewSQLquery.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewSQLquery.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewSQLquery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewSQLquery.Location = new System.Drawing.Point(4, 220);
+            this.dataGridViewSQLquery.Location = new System.Drawing.Point(4, 223);
             this.dataGridViewSQLquery.Name = "dataGridViewSQLquery";
             this.dataGridViewSQLquery.RowHeadersVisible = false;
             this.dataGridViewSQLquery.Size = new System.Drawing.Size(964, 143);
@@ -516,7 +516,7 @@
             // 
             this.TabControlSQL.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.TabControlSQL.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.TabControlSQL.Location = new System.Drawing.Point(4, 36);
+            this.TabControlSQL.Location = new System.Drawing.Point(4, 40);
             this.TabControlSQL.Name = "TabControlSQL";
             this.TabControlSQL.Padding = new System.Drawing.Point(10, 0);
             this.TabControlSQL.SelectedIndex = 0;
