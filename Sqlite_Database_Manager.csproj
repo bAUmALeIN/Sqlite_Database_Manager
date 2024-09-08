@@ -85,7 +85,10 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="ConnectionManager.cs" />
-    <Compile Include="CustomRichTextBox.cs">
+    <Compile Include="CustomRichTextBoxTableInfo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomRichTextBoxSQL.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomTabControl.cs">

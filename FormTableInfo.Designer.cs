@@ -37,15 +37,14 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.labelTableName = new System.Windows.Forms.Label();
-            this.columName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columTyp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columNN = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.columPK = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.customRichTextBoxTableInfo = new Sqlite_Database_Manager.CustomRichTextBoxTableInfo();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewColumInfo)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel4
@@ -100,15 +99,11 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewColumInfo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewColumInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewColumInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.columName,
-            this.columTyp,
-            this.columNN,
-            this.columPK});
-            this.dataGridViewColumInfo.Location = new System.Drawing.Point(12, 103);
+            this.dataGridViewColumInfo.Location = new System.Drawing.Point(3, 52);
             this.dataGridViewColumInfo.Name = "dataGridViewColumInfo";
+            this.dataGridViewColumInfo.ReadOnly = true;
             this.dataGridViewColumInfo.RowHeadersVisible = false;
-            this.dataGridViewColumInfo.Size = new System.Drawing.Size(676, 150);
+            this.dataGridViewColumInfo.Size = new System.Drawing.Size(666, 180);
             this.dataGridViewColumInfo.TabIndex = 5;
             // 
             // btnAbort
@@ -118,7 +113,7 @@
             this.btnAbort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAbort.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAbort.ForeColor = System.Drawing.Color.Brown;
-            this.btnAbort.Location = new System.Drawing.Point(607, 396);
+            this.btnAbort.Location = new System.Drawing.Point(599, 366);
             this.btnAbort.Name = "btnAbort";
             this.btnAbort.Size = new System.Drawing.Size(85, 27);
             this.btnAbort.TabIndex = 42;
@@ -132,7 +127,7 @@
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOk.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.ForeColor = System.Drawing.Color.ForestGreen;
-            this.btnOk.Location = new System.Drawing.Point(516, 396);
+            this.btnOk.Location = new System.Drawing.Point(508, 366);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(85, 27);
             this.btnOk.TabIndex = 41;
@@ -144,7 +139,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(12, 40);
+            this.label1.Location = new System.Drawing.Point(8, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(189, 25);
             this.label1.TabIndex = 43;
@@ -155,68 +150,66 @@
             this.labelTableName.AutoSize = true;
             this.labelTableName.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTableName.ForeColor = System.Drawing.Color.Brown;
-            this.labelTableName.Location = new System.Drawing.Point(198, 39);
+            this.labelTableName.Location = new System.Drawing.Point(194, 8);
             this.labelTableName.Name = "labelTableName";
             this.labelTableName.Size = new System.Drawing.Size(36, 25);
             this.labelTableName.TabIndex = 44;
             this.labelTableName.Text = "-/-";
-            // 
-            // columName
-            // 
-            this.columName.HeaderText = "Name";
-            this.columName.Name = "columName";
-            this.columName.ReadOnly = true;
-            // 
-            // columTyp
-            // 
-            this.columTyp.HeaderText = "Typ";
-            this.columTyp.Name = "columTyp";
-            this.columTyp.ReadOnly = true;
-            // 
-            // columNN
-            // 
-            this.columNN.HeaderText = "Not Null";
-            this.columNN.Name = "columNN";
-            this.columNN.ReadOnly = true;
-            // 
-            // columPK
-            // 
-            this.columPK.HeaderText = "Primary Key";
-            this.columPK.Name = "columPK";
-            this.columPK.ReadOnly = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(87, 260);
+            this.label3.Location = new System.Drawing.Point(83, 235);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(183, 25);
             this.label3.TabIndex = 46;
             this.label3.Text = "CREATE Anweisung";
             // 
-            // richTextBox1
+            // panel1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 288);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(331, 130);
-            this.richTextBox1.TabIndex = 47;
-            this.richTextBox1.Text = "";
+            this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel1.Controls.Add(this.customRichTextBoxTableInfo);
+            this.panel1.Controls.Add(this.checkBox1);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.btnAbort);
+            this.panel1.Controls.Add(this.btnOk);
+            this.panel1.Controls.Add(this.labelTableName);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.dataGridViewColumInfo);
+            this.panel1.Location = new System.Drawing.Point(4, 25);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(692, 403);
+            this.panel1.TabIndex = 48;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(589, 243);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(77, 17);
+            this.checkBox1.TabIndex = 48;
+            this.checkBox1.Text = "Bearbeiten";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // customRichTextBoxTableInfo
+            // 
+            this.customRichTextBoxTableInfo.AcceptsTab = true;
+            this.customRichTextBoxTableInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.customRichTextBoxTableInfo.Location = new System.Drawing.Point(13, 263);
+            this.customRichTextBoxTableInfo.Name = "customRichTextBoxTableInfo";
+            this.customRichTextBoxTableInfo.Size = new System.Drawing.Size(332, 130);
+            this.customRichTextBoxTableInfo.TabIndex = 49;
+            this.customRichTextBoxTableInfo.Text = "";
             // 
             // FormTableInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ClientSize = new System.Drawing.Size(700, 430);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.labelTableName);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnAbort);
-            this.Controls.Add(this.btnOk);
-            this.Controls.Add(this.dataGridViewColumInfo);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormTableInfo";
@@ -227,8 +220,9 @@
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewColumInfo)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -242,11 +236,9 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelTableName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columTyp;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn columNN;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn columPK;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private CustomRichTextBoxTableInfo customRichTextBoxTableInfo;
     }
 }

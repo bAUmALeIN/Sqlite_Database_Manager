@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace Sqlite_Database_Manager
 {
-    public class CustomRichTextBox : RichTextBox
+    public class CustomRichTextBoxSQL : RichTextBox
     {
         private readonly Color keywordColor = Color.Blue;  // Farbe für SQL-Schlüsselwörter
         private readonly Color alternateLineColor = Color.LightGray; // Farbe für alternative Zeilen
         private readonly Color defaultTextColor = Color.Black; // Standardtextfarbe
 
-        public CustomRichTextBox()
+        public CustomRichTextBoxSQL()
         {
             // Optionale Konfigurationen
             this.Dock = DockStyle.Fill;

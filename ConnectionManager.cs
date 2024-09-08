@@ -188,4 +188,65 @@ public class ConnectionManager
             CloseConnection();
         }
     }
+
+    public string GenerateCreateTableStatement(string tableName)
+    {
+        OpenConnection();
+        string createTableQuery = $"CREATE TABLE {tableName} (\n";
+
+        try
+        {
+            string query = $"PRAGMA table_info({tableName})";
+            using (SQLiteCommand cmd = new SQLiteCommand(query, connection))
+            {
+                using (SQLiteDataReader reader = cmd.ExecuteReader())
+                {
+                    bool firstColumn = true;
+
+                    while (reader.Read())
+                    {
+                        if (!firstColumn)
+                        {
+                            createTableQuery += ",\n";
+                        }
+                        firstColumn = false;
+
+                        string columnName = reader["name"].ToString();
+                        string columnType = reader["type"].ToString();
+                        bool isNotNull = reader["notnull"].ToString() == "1";
+                        bool isPrimaryKey = reader["pk"].ToString() == "1";
+
+                        createTableQuery += $"    {columnName} {columnType}";
+
+                        if (isNotNull)
+                        {
+                            createTableQuery += " NOT NULL";
+                        }
+
+                        if (isPrimaryKey)
+                        {
+                            createTableQuery += " PRIMARY KEY";
+                        }
+                    }
+                }
+            }
+
+            createTableQuery += "\n);";
+            FormMain.logger.WriteLine($"ConnectionManager.GenerateCreateTableStatement | CREATE Anweisung für Table : {tableName}");
+        }
+        catch (Exception ex)
+        {
+            FormMain.logger.WriteLine($"ConnectionManager.GenerateCreateTableStatement | Fehler: {ex.Message}");
+            throw new Exception($"Fehler beim Generieren der CREATE TABLE-Anweisung für '{tableName}': {ex.Message}");
+        }
+        finally
+        {
+            CloseConnection();
+        }
+
+        return createTableQuery;
+    }
+
+
+
 }

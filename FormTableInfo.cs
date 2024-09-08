@@ -16,6 +16,7 @@ namespace Sqlite_Database_Manager
         private string tableName = string.Empty;
         private Point mouseOffset;
         private bool isMouseDown = false;
+        
 
         private Engine engine;
 
@@ -23,13 +24,16 @@ namespace Sqlite_Database_Manager
         {
             InitializeComponent();
             tableName = tablename;  
-            engine = new Engine();  
+            engine = new Engine();
+            GetTableInfo(tablename, dataGridViewColumInfo);
+            customRichTextBoxTableInfo.Text = FormMain.connectionManager.GenerateCreateTableStatement(tablename);
+
         }
         
 
         private void FormTableInfo_Load(object sender, EventArgs e)
         {
-            labelTableName.Text = tableName;
+           labelTableName.Text = tableName;
            pictureBoxInfo.Image = engine.scaleImage(20,20,Properties.Resources.Logo);
 
         }
@@ -61,5 +65,57 @@ namespace Sqlite_Database_Manager
             }
         }
 
+        public void GetTableInfo(string tableName, DataGridView dgv)
+        {
+            DataTable columnsTable = FormMain.connectionManager.GetTableColumns(tableName);
+
+            DataTable tableInfo = new DataTable();
+            tableInfo.Columns.Add("Name", typeof(string));
+            tableInfo.Columns.Add("Type", typeof(string));
+            tableInfo.Columns.Add("Not Null", typeof(bool));
+            tableInfo.Columns.Add("Primary Key", typeof(bool));
+
+            foreach (DataRow row in columnsTable.Rows)
+            {
+                string columnName = row["name"].ToString();
+                string columnType = row["type"].ToString();
+                bool isNotNull = row["notnull"].ToString() == "1";
+                bool isPrimaryKey = row["pk"].ToString() == "1";
+
+                tableInfo.Rows.Add(columnName, columnType, isNotNull, isPrimaryKey);
+            }
+
+            dgv.DataSource = tableInfo;
+
+            List<DataGridViewColumn> columnsToReplace = new List<DataGridViewColumn>();
+
+            foreach (DataGridViewColumn column in dgv.Columns)
+            {
+                if (column.HeaderText == "Not Null" || column.HeaderText == "Primary Key")
+                {
+                    columnsToReplace.Add(column);
+                }
+            }
+
+            foreach (var column in columnsToReplace)
+            {
+                DataGridViewCheckBoxColumn checkBoxColumn = new DataGridViewCheckBoxColumn
+                {
+                    HeaderText = column.HeaderText,
+                    DataPropertyName = column.DataPropertyName,
+                    TrueValue = true,
+                    FalseValue = false
+                };
+
+                int columnIndex = dgv.Columns.IndexOf(column);
+                dgv.Columns.Remove(column);
+                dgv.Columns.Insert(columnIndex, checkBoxColumn);
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

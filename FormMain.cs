@@ -313,7 +313,7 @@ namespace Sqlite_Database_Manager
                 if (tabPage == selectedTab)
                 {
                     foreach (Control control in tabPage.Controls) {
-                        if (control is CustomRichTextBox) { 
+                        if (control is CustomRichTextBoxSQL) { 
                         query = control.Text;
                         }
                     }
@@ -352,6 +352,8 @@ namespace Sqlite_Database_Manager
                         richTextBoxAusgabeQuery.AppendText(Config.lasQueryFailText);
                         richTextBoxAusgabeQuery.ForeColor = Color.White;
                         richTextBoxAusgabeQuery.BackColor = Color.IndianRed;
+                        dataGridViewSQLquery.DataSource = null;
+                        dataGridViewSQLquery.Refresh();
                     }
                 }
                 else {
@@ -375,7 +377,7 @@ namespace Sqlite_Database_Manager
                     {
                         foreach (Control control in tab.Controls)
                         {
-                            if (control is CustomRichTextBox)
+                            if (control is CustomRichTextBoxSQL)
                             {
                                 SaveFileDialog sfd = new SaveFileDialog();
                                 sfd.Filter = "Text|*.txt|All|*.*";
@@ -407,7 +409,7 @@ namespace Sqlite_Database_Manager
                     {
                         foreach (Control control in tab.Controls)
                         {
-                            if (control is CustomRichTextBox)
+                            if (control is CustomRichTextBoxSQL)
                             {
                                 OpenFileDialog ofd = new OpenFileDialog();
                                 ofd.Filter = "Text|*.txt|All|*.*";
@@ -439,7 +441,7 @@ namespace Sqlite_Database_Manager
                     TabPage tp = addNewTabePage();
                     foreach (Control control in tp.Controls)
                     {
-                        if (control is CustomRichTextBox)
+                        if (control is CustomRichTextBoxSQL)
                         {
 
                             string file = ofd.FileName;
@@ -476,7 +478,7 @@ namespace Sqlite_Database_Manager
             }
 
             TabPage newTabPage = new TabPage($"SQL{nextTabNumber}");
-            RichTextBox rtf = new CustomRichTextBox();
+            RichTextBox rtf = new CustomRichTextBoxSQL();
             rtf.Dock = DockStyle.Fill;
             rtf.Name = $"rtfSQLquery{nextTabNumber.ToString()}";
             newTabPage.Controls.Add(rtf);
