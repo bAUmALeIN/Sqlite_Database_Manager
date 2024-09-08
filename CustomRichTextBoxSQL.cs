@@ -16,7 +16,7 @@ namespace Sqlite_Database_Manager
             // Optionale Konfigurationen
             this.Dock = DockStyle.Fill;
             this.AcceptsTab = true;
-            this.Font = new Font("Consolas", 10);
+            this.Font = new Font("Segeo UI", 10);
             this.Multiline = true;
         }
 
@@ -35,7 +35,7 @@ namespace Sqlite_Database_Manager
 
         private void ApplySyntaxHighlighting()
         {
-            Font syntaxF = new Font("Segeo UI", 8);
+            Font syntaxF = new Font("Segeo UI", 10);
             string[] keywords = new[] { "SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "DELETE", "JOIN", "LEFT", "RIGHT", "INNER", "OUTER", "NULL", "COUNT", "´NOT", "CREATE TABLE", "TRUE", "FALSE", "NOT", };
             string[] keywordsData = new[] { "INTEGER", "REAL", "BLOB", "TEXT", "BOOL" };
             string text = this.Text;
