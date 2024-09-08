@@ -19,7 +19,7 @@ namespace Sqlite_Database_Manager
         
 
         private Engine engine;
-
+        private DataTable lastTable = new DataTable();
         public FormTableInfo(string tablename)
         {
             InitializeComponent();
@@ -27,7 +27,7 @@ namespace Sqlite_Database_Manager
             engine = new Engine();
             GetTableInfo(tablename, dataGridViewColumInfo);
             customRichTextBoxTableInfo.Text = FormMain.connectionManager.GenerateCreateTableStatement(tablename);
-
+            lastTable = (DataTable)dataGridViewColumInfo.DataSource;
         }
         
 
@@ -113,8 +113,20 @@ namespace Sqlite_Database_Manager
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            if (checkBox1.CheckState == CheckState.Checked) {
+                dataGridViewColumInfo.ReadOnly = false;
+                btnSave.Visible = true;
+            }
+            else
+            {
+                dataGridViewColumInfo.ReadOnly = true;
+                GetTableInfo(this.tableName, dataGridViewColumInfo);
+                btnSave.Visible = false;
+            }
 
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Sqlite_Database_Manager
@@ -36,40 +37,58 @@ namespace Sqlite_Database_Manager
         private void ApplySyntaxHighlighting()
         {
             Font syntaxF = new Font("Segeo UI", 8);
-            string[] keywords = new[] { "SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "DELETE", "JOIN", "LEFT", "RIGHT", "INNER", "OUTER", "NULL", "COUNT", "´NOT", "CREATE TABLE", "TRUE", "FALSE", "NOT", };
-            string[] keywordsData = new[] { "INTEGER", "REAL", "BLOB", "TEXT", "BOOL" };
+            string[] keywords = new[]
+            {
+            "SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "DELETE", "JOIN", "LEFT", "RIGHT",
+            "INNER", "OUTER", "FULL", "CROSS", "ON", "NULL", "NOT", "AND", "OR", "LIKE",
+            "IN", "EXISTS", "BETWEEN", "AS", "DISTINCT", "GROUP BY", "ORDER BY", "HAVING",
+            "UNION", "ALL", "ANY", "LIMIT", "OFFSET", "CASE", "WHEN", "THEN", "ELSE", "END",
+            "IS", "NULLIF", "COALESCE", "CREATE TABLE", "DROP TABLE", "ALTER TABLE", "TRUNCATE",
+            "PRIMARY KEY", "FOREIGN KEY", "REFERENCES", "DEFAULT", "AUTO_INCREMENT", "CHECK",
+            "VIEW", "INDEX", "TRIGGER", "PROCEDURE", "FUNCTION", "CURSOR", "DECLARE",
+            "BEGIN", "END", "COMMIT", "ROLLBACK", "SAVEPOINT", "TRANSACTION", "SET", "SHOW",
+            "GRANT", "REVOKE", "DESCRIBE", "EXPLAIN", "USE", "DATABASE", "SCHEMA", "TRUE", "FALSE"
+             };
+
+            string[] keywordsData = new[]
+            {
+            "INTEGER", "REAL", "BLOB", "TEXT", "BOOLEAN", "VARCHAR", "CHAR", "DECIMAL",
+            "NUMERIC", "FLOAT", "DOUBLE", "DATE", "TIME", "TIMESTAMP", "DATETIME", "TINYINT",
+            "SMALLINT", "BIGINT", "MEDIUMINT", "SERIAL", "BIT", "ENUM", "SET", "YEAR"
+              };
+
             string text = this.Text;
+
 
             this.SelectAll();
             this.SelectionColor = defaultTextColor;
 
             foreach (string keyword in keywords)
             {
-                int index = 0;
-                while ((index = text.IndexOf(keyword, index, StringComparison.OrdinalIgnoreCase)) != -1)
-                {
-                    this.Select(index, keyword.Length);
-                    this.SelectionColor = keywordColor;
-                    this.SelectionFont = new Font(syntaxF, FontStyle.Bold);
-                    index += keyword.Length;
-                }   
+                HighlightWord(text, keyword, keywordColor, syntaxF);
             }
 
+  
             foreach (string keyword in keywordsData)
             {
-                int index = 0;
-                while ((index = text.IndexOf(keyword, index, StringComparison.OrdinalIgnoreCase)) != -1)
-                {
-                    this.Select(index, keyword.Length);
-                    this.SelectionColor = keywordColorData;
-                    this.SelectionFont = new Font(syntaxF, FontStyle.Bold);
-                    index += keyword.Length;
-                }
+                HighlightWord(text, keyword, keywordColorData, syntaxF);
             }
 
             // Zurück zur Standardfarbe
             this.Select(this.TextLength, 0);
             this.SelectionColor = defaultTextColor;
+        }
+
+
+        private void HighlightWord(string text, string keyword, Color color, Font font)
+        {
+            string pattern = $@"\b{Regex.Escape(keyword)}\b"; // \b steht für Wortgrenzen
+            foreach (Match match in Regex.Matches(text, pattern, RegexOptions.IgnoreCase))
+            {
+                this.Select(match.Index, match.Length);
+                this.SelectionColor = color;
+                this.SelectionFont = new Font(font, FontStyle.Bold);
+            }
         }
 
         private void ApplyAlternateRowColor(Graphics graphics)
@@ -91,5 +110,8 @@ namespace Sqlite_Database_Manager
                 }
             }
         }
+
+       
+
     }
 }

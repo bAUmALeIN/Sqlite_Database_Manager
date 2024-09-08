@@ -39,8 +39,9 @@
             this.labelTableName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.btnSave = new System.Windows.Forms.Button();
             this.customRichTextBoxTableInfo = new Sqlite_Database_Manager.CustomRichTextBoxTableInfo();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewColumInfo)).BeginInit();
@@ -170,6 +171,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.customRichTextBoxTableInfo);
             this.panel1.Controls.Add(this.checkBox1);
             this.panel1.Controls.Add(this.label1);
@@ -183,6 +185,32 @@
             this.panel1.Size = new System.Drawing.Size(692, 403);
             this.panel1.TabIndex = 48;
             // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.ForestGreen;
+            this.btnSave.Location = new System.Drawing.Point(581, 266);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(85, 27);
+            this.btnSave.TabIndex = 50;
+            this.btnSave.Text = "Speichern";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Visible = false;
+            // 
+            // customRichTextBoxTableInfo
+            // 
+            this.customRichTextBoxTableInfo.AcceptsTab = true;
+            this.customRichTextBoxTableInfo.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.customRichTextBoxTableInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.customRichTextBoxTableInfo.Location = new System.Drawing.Point(13, 263);
+            this.customRichTextBoxTableInfo.Name = "customRichTextBoxTableInfo";
+            this.customRichTextBoxTableInfo.ReadOnly = true;
+            this.customRichTextBoxTableInfo.Size = new System.Drawing.Size(332, 130);
+            this.customRichTextBoxTableInfo.TabIndex = 49;
+            this.customRichTextBoxTableInfo.Text = "";
+            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -192,17 +220,7 @@
             this.checkBox1.TabIndex = 48;
             this.checkBox1.Text = "Bearbeiten";
             this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // customRichTextBoxTableInfo
-            // 
-            this.customRichTextBoxTableInfo.AcceptsTab = true;
-            this.customRichTextBoxTableInfo.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.customRichTextBoxTableInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.customRichTextBoxTableInfo.Location = new System.Drawing.Point(13, 263);
-            this.customRichTextBoxTableInfo.Name = "customRichTextBoxTableInfo";
-            this.customRichTextBoxTableInfo.Size = new System.Drawing.Size(332, 130);
-            this.customRichTextBoxTableInfo.TabIndex = 49;
-            this.customRichTextBoxTableInfo.Text = "";
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // FormTableInfo
             // 
@@ -241,5 +259,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox checkBox1;
         private CustomRichTextBoxTableInfo customRichTextBoxTableInfo;
+        private System.Windows.Forms.Button btnSave;
     }
 }
