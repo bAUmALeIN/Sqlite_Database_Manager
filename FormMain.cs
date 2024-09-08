@@ -13,7 +13,7 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 
-// SQLit DB Broweser Version 2
+// SQLite DB Broweser Version 2
 
 
 namespace Sqlite_Database_Manager
