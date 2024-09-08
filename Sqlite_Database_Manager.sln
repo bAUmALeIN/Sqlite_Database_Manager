@@ -5,8 +5,6 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sqlite_Database_Manager", "Sqlite_Database_Manager.csproj", "{57F57B76-DDA7-47DA-B848-522EFE283470}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "..\Setup1\Setup1.vdproj", "{3602B4B3-5244-41E6-958F-488C38DA4822}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,8 +15,6 @@ Global
 		{57F57B76-DDA7-47DA-B848-522EFE283470}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57F57B76-DDA7-47DA-B848-522EFE283470}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57F57B76-DDA7-47DA-B848-522EFE283470}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3602B4B3-5244-41E6-958F-488C38DA4822}.Debug|Any CPU.ActiveCfg = Debug
-		{3602B4B3-5244-41E6-958F-488C38DA4822}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

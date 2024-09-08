@@ -57,8 +57,9 @@ namespace Sqlite_Database_Manager
                 }
                 else
                 {
-
-
+                    Properties.Settings.Default.DBCONNECTIONSTRING = null;
+                    Properties.Settings.Default.DBPATH = null;
+                    Properties.Settings.Default.Save();
                 }
 
             }
