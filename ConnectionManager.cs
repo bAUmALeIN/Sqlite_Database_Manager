@@ -158,6 +158,7 @@ public class ConnectionManager
 
     public void UpdateTable(DataTable updatedTable, string tableName)
     {
+        // Benötigt einen PK in der Tabelle, sonst execption (: 
         try
         {
             OpenConnection();

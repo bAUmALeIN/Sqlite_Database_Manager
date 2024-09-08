@@ -82,6 +82,7 @@ namespace Sqlite_Database_Manager
                 {
                     // Tab schließen
                     TabPages.RemoveAt(i);
+                    
                     break;
                 }
             }

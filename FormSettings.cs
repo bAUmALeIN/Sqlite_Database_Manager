@@ -117,8 +117,8 @@ namespace Sqlite_Database_Manager
             }
             else
             {
-                Properties.Settings.Default.DBPATH = "_";
-                Properties.Settings.Default.DBCONNECTIONSTRING = "_";
+                Properties.Settings.Default.DBPATH = "";
+                Properties.Settings.Default.DBCONNECTIONSTRING = "";
                 Properties.Settings.Default.Save();
             }
 

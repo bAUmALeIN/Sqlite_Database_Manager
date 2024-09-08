@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelControlBar = new System.Windows.Forms.Panel();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
@@ -39,6 +39,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.labelInfoTextTable = new System.Windows.Forms.Label();
             this.labelTextDataType = new System.Windows.Forms.Label();
             this.labelDataType = new System.Windows.Forms.Label();
             this.labelInhalt = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.tabPageSQL = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this.TabControlSQL = new Sqlite_Database_Manager.CustomTabControl();
             this.button3 = new System.Windows.Forms.Button();
             this.btnSaveSQL = new System.Windows.Forms.Button();
             this.btnOpenSQL = new System.Windows.Forms.Button();
@@ -63,6 +63,7 @@
             this.dataGridViewSQLquery = new System.Windows.Forms.DataGridView();
             this.richTextBoxAusgabeQuery = new System.Windows.Forms.RichTextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.TabControlSQL = new Sqlite_Database_Manager.CustomTabControl();
             this.panelControlBar.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -139,7 +140,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.LightGray;
-            this.label2.Location = new System.Drawing.Point(30, 1);
+            this.label2.Location = new System.Drawing.Point(409, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(220, 21);
             this.label2.TabIndex = 35;
@@ -150,7 +151,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(385, 1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(21, 21);
             this.pictureBox1.TabIndex = 7;
@@ -198,6 +199,7 @@
             // tabPageMain
             // 
             this.tabPageMain.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.tabPageMain.Controls.Add(this.labelInfoTextTable);
             this.tabPageMain.Controls.Add(this.labelTextDataType);
             this.tabPageMain.Controls.Add(this.labelDataType);
             this.tabPageMain.Controls.Add(this.labelInhalt);
@@ -211,6 +213,18 @@
             this.tabPageMain.Size = new System.Drawing.Size(973, 447);
             this.tabPageMain.TabIndex = 0;
             this.tabPageMain.Text = "Datenbank Struktur";
+            // 
+            // labelInfoTextTable
+            // 
+            this.labelInfoTextTable.AutoSize = true;
+            this.labelInfoTextTable.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelInfoTextTable.ForeColor = System.Drawing.Color.Black;
+            this.labelInfoTextTable.Location = new System.Drawing.Point(181, 14);
+            this.labelInfoTextTable.Name = "labelInfoTextTable";
+            this.labelInfoTextTable.Size = new System.Drawing.Size(299, 13);
+            this.labelInfoTextTable.TabIndex = 11;
+            this.labelInfoTextTable.Text = "Doppelklick auf die Tabelle um Informatioen anzuzeigen";
+            this.labelInfoTextTable.Visible = false;
             // 
             // labelTextDataType
             // 
@@ -293,6 +307,7 @@
             this.treeViewDB.Size = new System.Drawing.Size(150, 397);
             this.treeViewDB.TabIndex = 0;
             this.treeViewDB.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewDB_AfterSelect);
+            this.treeViewDB.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.treeViewDB_MouseDoubleClick);
             // 
             // tabPageEdit
             // 
@@ -364,14 +379,14 @@
             this.dataGridViewEditTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewEditTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewEditTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewEditTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewEditTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewEditTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEditTable.Location = new System.Drawing.Point(3, 42);
             this.dataGridViewEditTable.Name = "dataGridViewEditTable";
@@ -417,17 +432,6 @@
             this.label4.Size = new System.Drawing.Size(239, 32);
             this.label4.TabIndex = 11;
             this.label4.Text = "Datenbank-Abfrage";
-            // 
-            // TabControlSQL
-            // 
-            this.TabControlSQL.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.TabControlSQL.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.TabControlSQL.Location = new System.Drawing.Point(4, 36);
-            this.TabControlSQL.Name = "TabControlSQL";
-            this.TabControlSQL.Padding = new System.Drawing.Point(10, 0);
-            this.TabControlSQL.SelectedIndex = 0;
-            this.TabControlSQL.Size = new System.Drawing.Size(964, 178);
-            this.TabControlSQL.TabIndex = 7;
             // 
             // button3
             // 
@@ -494,7 +498,7 @@
             // 
             this.richTextBoxAusgabeQuery.Location = new System.Drawing.Point(4, 369);
             this.richTextBoxAusgabeQuery.Name = "richTextBoxAusgabeQuery";
-            this.richTextBoxAusgabeQuery.Size = new System.Drawing.Size(967, 61);
+            this.richTextBoxAusgabeQuery.Size = new System.Drawing.Size(964, 61);
             this.richTextBoxAusgabeQuery.TabIndex = 1;
             this.richTextBoxAusgabeQuery.Text = "";
             // 
@@ -507,6 +511,18 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // TabControlSQL
+            // 
+            this.TabControlSQL.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.TabControlSQL.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.TabControlSQL.Location = new System.Drawing.Point(4, 36);
+            this.TabControlSQL.Name = "TabControlSQL";
+            this.TabControlSQL.Padding = new System.Drawing.Point(10, 0);
+            this.TabControlSQL.SelectedIndex = 0;
+            this.TabControlSQL.Size = new System.Drawing.Size(964, 178);
+            this.TabControlSQL.TabIndex = 7;
+            this.TabControlSQL.SelectedIndexChanged += new System.EventHandler(this.TabControlSQL_SelectedIndexChanged);
             // 
             // FormMain
             // 
@@ -580,6 +596,7 @@
         private CustomTabControl TabControlSQL;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelInfoTextTable;
     }
 }
 

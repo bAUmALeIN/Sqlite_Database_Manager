@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Sqlite_Database_Manager
 {
@@ -26,5 +27,19 @@ namespace Sqlite_Database_Manager
             return newImage;
             }
         }
+
+        public bool checkIfFormIsOpen(Form form)
+        {
+            FormMain.logger.WriteLine($"engine.checkIfFormIsOpen | aufruf");
+            foreach (Form frm in Application.OpenForms) {
+                if ( frm is FormTableInfo) {
+                    FormMain.logger.WriteLine($"engine.checkIfFormIsOpen | {frm.ToString()} is type of FormTableInfo");
+                    return true;
+                }
+            
+            }
+            return false;
+        }
+
     }
 }

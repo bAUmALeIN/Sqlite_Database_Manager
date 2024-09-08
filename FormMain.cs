@@ -89,7 +89,7 @@ namespace Sqlite_Database_Manager
             }
             else
             {
-                logger.WriteLine($"FormMain.Refresh | Keine Datenbank Datei hinterlegt");
+                logger.WriteLine($"FormMain.Refresh | Keine Datenbank Daten hinterlegt");
             }
         }
 
@@ -173,6 +173,7 @@ namespace Sqlite_Database_Manager
                 dataGridView1.DataSource = tableData;
                 labelDataType.Visible = false;
                 labelTextDataType.Visible = false;
+                labelInfoTextTable.Visible = true;
             }
             else // UnterNode -> Spalte
             {
@@ -184,6 +185,7 @@ namespace Sqlite_Database_Manager
                 labelDataType.Text = connectionManager.GetColumnDataType(tableName, columnName);
                 labelDataType.Visible = true;
                 labelTextDataType.Visible = true;
+                labelInfoTextTable.Visible = false;
             }
         }
 
@@ -301,6 +303,8 @@ namespace Sqlite_Database_Manager
 
         private void btnRunSQL_Click(object sender, EventArgs e)
         {
+            richTextBoxAusgabeQuery.Text = "";
+            richTextBoxAusgabeQuery.BackColor = Color.White;
             String query = "";
             int rows = 0;
             TabPage selectedTab = TabControlSQL.SelectedTab;
@@ -332,6 +336,8 @@ namespace Sqlite_Database_Manager
                         dataGridViewSQLquery.DataSource = dt;
                         if (rows > 0) {
                             richTextBoxAusgabeQuery.Text = $" Abfrage erfolgreich ausgeführt. {rows.ToString()} Zeilen(n) betroffen";
+                            richTextBoxAusgabeQuery.ForeColor = Color.White;
+                            richTextBoxAusgabeQuery.BackColor = Color.SeaGreen ;
                         }
                         else
                         {
@@ -344,6 +350,8 @@ namespace Sqlite_Database_Manager
 
                         richTextBoxAusgabeQuery.Text = $"Die Abfrage hat einen Fehler verursacht:" + Environment.NewLine;
                         richTextBoxAusgabeQuery.AppendText(Config.lasQueryFailText);
+                        richTextBoxAusgabeQuery.ForeColor = Color.White;
+                        richTextBoxAusgabeQuery.BackColor = Color.IndianRed;
                     }
                 }
                 else {
@@ -476,5 +484,36 @@ namespace Sqlite_Database_Manager
             return newTabPage;
         }
 
+        private void treeViewDB_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //wip
+            logger.WriteLine("treeViewDB.MouseDoubleClick event ausgelöst");
+            TreeNode node = treeViewDB.GetNodeAt(e.X, e.Y);
+            logger.WriteLine($"treeViewDB.MouseDoubleClick event |{e.X.ToString()} {e.Y.ToString()}");
+            if (node.Parent== null) {
+                    String tablename = node.Text;
+                    FormTableInfo tableInfo = new FormTableInfo(tablename);
+                    if (engine.checkIfFormIsOpen(tableInfo) == false)
+                    {
+                        tableInfo.ShowDialog();
+
+                    }
+                    
+
+                }
+
+
+
+        }
+
+        private void TabControlSQL_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            richTextBoxAusgabeQuery.Text = "";
+            richTextBoxAusgabeQuery.BackColor = SystemColors.Control;
+            richTextBoxAusgabeQuery.ForeColor = Color.Black;
+            dataGridViewSQLquery.DataSource = null;
+            dataGridViewSQLquery.Refresh();
+        }
     }
 }
+

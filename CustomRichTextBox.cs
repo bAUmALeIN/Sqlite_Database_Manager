@@ -2,8 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-// made by Chatgpt :D
-
 namespace Sqlite_Database_Manager
 {
     public class CustomRichTextBox : RichTextBox
@@ -25,12 +23,18 @@ namespace Sqlite_Database_Manager
         {
             base.OnTextChanged(e);
             ApplySyntaxHighlighting();
-            ApplyAlternateRowColor();
+            Invalidate(); // Veranlasst das Steuerelement, sich neu zu zeichnen
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            ApplyAlternateRowColor(e.Graphics);
         }
 
         private void ApplySyntaxHighlighting()
         {
-            string[] keywords = new[] { "SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "DELETE", "JOIN", "LEFT", "RIGHT", "INNER", "OUTER", "NULL","COUNT" };
+            string[] keywords = new[] { "SELECT", "FROM", "WHERE", "INSERT", "UPDATE", "DELETE", "JOIN", "LEFT", "RIGHT", "INNER", "OUTER", "NULL", "COUNT" };
             string text = this.Text;
 
             this.SelectAll();
@@ -52,31 +56,24 @@ namespace Sqlite_Database_Manager
             this.SelectionColor = defaultTextColor;
         }
 
-        private void ApplyAlternateRowColor()
+        private void ApplyAlternateRowColor(Graphics graphics)
         {
-            // Entfernen der vorherigen Formatierungen
-            this.SelectAll();
-            this.SelectionBackColor = this.BackColor;
-
-            // Alternierende Zeilenfarben anwenden
             int lineCount = this.Lines.Length;
+            int lineHeight = this.Font.Height;
+
+            // Hintergrundfarbe für jede Zeile zeichnen
             for (int i = 0; i < lineCount; i++)
             {
                 if (i % 2 != 0) // Jede zweite Zeile
                 {
-                    int start = this.GetFirstCharIndexFromLine(i);
-                    int length = this.Lines[i].Length;
-                    if (start >= 0)
+                    int start = this.GetPositionFromCharIndex(this.GetFirstCharIndexFromLine(i)).Y;
+                    int end = start + lineHeight;
+                    using (Brush brush = new SolidBrush(alternateLineColor))
                     {
-                        this.Select(start, length);
-                        this.SelectionBackColor = alternateLineColor;
+                        graphics.FillRectangle(brush, 0, start, this.ClientSize.Width, lineHeight);
                     }
                 }
             }
-
-            // Zurück zur Standardfarbe
-            this.Select(this.TextLength, 0);
-            this.SelectionBackColor = this.BackColor;
         }
     }
 }
