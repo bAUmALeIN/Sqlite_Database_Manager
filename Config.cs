@@ -14,7 +14,7 @@ namespace Sqlite_Database_Manager
 
         public static string ConnectionString = $"Data Source={dbPath};Version=3;";
         public static bool dbPathChanged = false;
-
+        public static string lasQueryFailText = "";
 
         public static String dbPath = "";
         public static bool foundDB = false;

@@ -12,6 +12,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
+
+// SQLit DB Broweser Version 2
+
+
 namespace Sqlite_Database_Manager
 {
     public partial class FormMain : Form
@@ -25,6 +29,10 @@ namespace Sqlite_Database_Manager
         private Point mouseOffset;
         private bool isMouseDown = false;
 
+
+        private DataTable lastEditTable;
+
+        
 
 
 
@@ -113,6 +121,7 @@ namespace Sqlite_Database_Manager
 
             if (Config.foundDB == true) {
                 treeViewDB.Nodes.Clear();
+                ComboBoxTables.Items.Clear();
 
                 using (SQLiteConnection conn = new SQLiteConnection(Config.ConnectionString))
                 {
@@ -126,7 +135,7 @@ namespace Sqlite_Database_Manager
 
                         TreeNode tableNode = new TreeNode(tableName);
                         treeViewDB.Nodes.Add(tableNode);
-
+                        ComboBoxTables.Items.Add(tableName);
 
                         string query = $"PRAGMA table_info({tableName})";
                         using (SQLiteCommand cmd = new SQLiteCommand(query, conn))
@@ -142,6 +151,10 @@ namespace Sqlite_Database_Manager
                             }
                         }
                     }
+                        
+
+
+
                 }
 
             }
@@ -157,15 +170,19 @@ namespace Sqlite_Database_Manager
                 var tableName = e.Node.Text;
                 DataTable tableData = connectionManager.GetTableData(tableName);
                 dataGridView1.DataSource = tableData;
+                labelDataType.Visible = false;
+                labelTextDataType.Visible = false;
             }
             else // UnterNode -> Spalte
             {
-  
+                
                 var tableName = e.Node.Parent.Text;
                 var columnName = e.Node.Text;
                 DataTable columnData = connectionManager.GetColumnData(tableName, columnName);
                 dataGridView1.DataSource = columnData;
-                
+                labelDataType.Text = connectionManager.GetColumnDataType(tableName, columnName);
+                labelDataType.Visible = true;
+                labelTextDataType.Visible = true;
             }
         }
 
@@ -235,6 +252,123 @@ namespace Sqlite_Database_Manager
             settings.Show();
 
 
+        }
+
+        private void ComboBoxTables_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            String selectedValue = ComboBoxTables.SelectedItem.ToString();
+            DataTable dt = connectionManager.GetTableData(selectedValue);
+            dataGridViewEditTable.DataSource = dt;
+
+
+        }
+
+        private void useless()
+        {
+
+        }
+
+        private void btnSaveTable_Click(object sender, EventArgs e)
+        {
+            DataTable dt = (DataTable)dataGridViewEditTable.DataSource;
+            string tablename = ComboBoxTables.SelectedItem.ToString();
+
+            connectionManager.UpdateTable(dt,tablename);
+
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            string tablename = ComboBoxTables.SelectedItem.ToString();
+            DataTable dt = connectionManager.GetTableData(tablename);
+            dataGridViewEditTable.DataSource = dt;
+            logger.WriteLine("Main | Verwerfe änderungen");
+        }
+
+        private void dataGridViewEditTable_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            logger.WriteLine($"Fehler im DGV {e.Exception.Message}");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int nextTabNumber = 1; // Starten mit 1
+            foreach (TabPage tabPage in TabControlSQL.TabPages)
+            {
+                if (tabPage.Text.StartsWith("SQL") && int.TryParse(tabPage.Text.Substring(3), out int tabNumber))
+                {
+                    if (tabNumber >= nextTabNumber)
+                    {
+                        nextTabNumber = tabNumber + 1;
+                    }
+                }
+            }
+
+            TabPage newTabPage = new TabPage($"SQL{nextTabNumber}");
+            RichTextBox rtf = new CustomRichTextBox();
+            rtf.Dock = DockStyle.Fill;
+            rtf.Name = $"rtfSQLquery{nextTabNumber.ToString()}";
+            newTabPage.Controls.Add(rtf);
+            TabControlSQL.TabPages.Add(newTabPage);
+            
+        }
+
+        private void btnRunSQL_Click(object sender, EventArgs e)
+        {
+            String query = "";
+            int rows = 0;
+            TabPage selectedTab = TabControlSQL.SelectedTab;
+            foreach (TabPage tabPage in TabControlSQL.TabPages) { 
+            
+                if (tabPage == selectedTab)
+                {
+                    foreach (Control control in tabPage.Controls) {
+                        if (control is CustomRichTextBox) { 
+                        query = control.Text;
+                        }
+                    }
+
+                }
+
+            }
+
+            if (query != "")
+            {
+                if (connectionManager != null) {
+                    DataTable dt = connectionManager.ExecuteQuery(query);
+                    logger.WriteLine($"Main | SQL Query: {query}");
+                    if (dt != null)
+                    {
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            rows++;
+                        }
+                        dataGridViewSQLquery.DataSource = dt;
+                        if (rows > 0) {
+                            richTextBoxAusgabeQuery.Text = $" Abfrage erfolgreich ausgeführt. {rows.ToString()} Zeilen(n) betroffen";
+                        }
+                        else
+                        {
+                            richTextBoxAusgabeQuery.Text = $"Abfrage hat 0 Zeilen betroffen";
+                        }
+                        
+                    }
+                    else
+                    {
+
+                        richTextBoxAusgabeQuery.Text = $"Die Abfrage hat einen Fehler verursacht:" + Environment.NewLine;
+                        richTextBoxAusgabeQuery.AppendText(Config.lasQueryFailText);
+                    }
+                }
+                else {
+                    logger.WriteLine($"Main | Keine Verbindung hinterlegt: {query}");
+                }
+                
+
+
+
+            }
         }
     }
 }

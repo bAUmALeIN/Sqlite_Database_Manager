@@ -103,6 +103,26 @@ namespace Sqlite_Database_Manager.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_new_tab_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-new-tab-20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_ordner_öffnen_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-ordner-öffnen-20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_refresh_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8-refresh-30", resourceCulture);
@@ -116,6 +136,26 @@ namespace Sqlite_Database_Manager.Properties {
         internal static System.Drawing.Bitmap icons8_settings_20 {
             get {
                 object obj = ResourceManager.GetObject("icons8_settings_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_speichern_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-speichern-20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_spielen_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-spielen-20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

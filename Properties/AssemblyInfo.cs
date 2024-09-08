@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Allgemeine Informationen über eine Assembly werden über die folgenden
 // Attribute gesteuert. Ändern Sie diese Attributwerte, um die Informationen zu ändern,
 // die einer Assembly zugeordnet sind.
-[assembly: AssemblyTitle("Sqlite_Database_Manager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("SQLite-DatenbankManager")]
+[assembly: AssemblyDescription("WinForms basierter Datenbank Browser für SQLite")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Sqlite_Database_Manager")]
+[assembly: AssemblyCompany("Pauls")]
+[assembly: AssemblyProduct("SQLite-Browser")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

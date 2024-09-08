@@ -58,5 +58,17 @@ namespace Sqlite_Database_Manager.Properties {
                 this["DBCONNECTIONSTRING"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string lastQueryFail {
+            get {
+                return ((string)(this["lastQueryFail"]));
+            }
+            set {
+                this["lastQueryFail"] = value;
+            }
+        }
     }
 }
