@@ -47,18 +47,18 @@ namespace Sqlite_Database_Manager
                 logger.Show();
             }
 
-            if (Properties.Settings.Default.DBCONNECTIONSTRING != null) {
+            if (Properties.Settings.Default.DBCONNECTIONSTRING.Length > 1) {
                 logger.WriteLine($"MainLoad | ConnectionString gefunden: {Properties.Settings.Default.DBCONNECTIONSTRING}");
-                DialogResult resultUseSavedCon = MessageBox.Show("Soll die hinterlegte Verbindung geladen werden ?", "Verbindung gefunden", MessageBoxButtons.YesNo);
-                if (resultUseSavedCon == DialogResult.Yes)
+                DialogResult resultUseSavedCon = MessageBox.Show("Soll die hinterlegte Verbindung geladen werden ?", "Verbindung gefunden", MessageBoxButtons.OKCancel);
+                if (resultUseSavedCon == DialogResult.OK)
                 {
                     Config.ConnectionString = Properties.Settings.Default.DBCONNECTIONSTRING;
                     loadDefault = true;
                 }
                 else
                 {
-                    Properties.Settings.Default.DBCONNECTIONSTRING = null;
-                    Properties.Settings.Default.DBPATH = null;
+                    Properties.Settings.Default.DBCONNECTIONSTRING = "";
+                    Properties.Settings.Default.DBPATH = "";
                     Properties.Settings.Default.Save();
                 }
 
@@ -73,7 +73,7 @@ namespace Sqlite_Database_Manager
                 return;
             }
             this.StartPosition = FormStartPosition.CenterScreen;
-            logger.WriteLine($"FormMain | Keine Datenbank Datei hinterlegt");
+            logger.WriteLine($"FormMain | Keine Datenbank Daten hinterlegt");
 
         }
 
@@ -294,25 +294,9 @@ namespace Sqlite_Database_Manager
 
         private void button3_Click(object sender, EventArgs e)
         {
-            int nextTabNumber = 1; // Starten mit 1
-            foreach (TabPage tabPage in TabControlSQL.TabPages)
-            {
-                if (tabPage.Text.StartsWith("SQL") && int.TryParse(tabPage.Text.Substring(3), out int tabNumber))
-                {
-                    if (tabNumber >= nextTabNumber)
-                    {
-                        nextTabNumber = tabNumber + 1;
-                    }
-                }
-            }
+            addNewTabePage();
 
-            TabPage newTabPage = new TabPage($"SQL{nextTabNumber}");
-            RichTextBox rtf = new CustomRichTextBox();
-            rtf.Dock = DockStyle.Fill;
-            rtf.Name = $"rtfSQLquery{nextTabNumber.ToString()}";
-            newTabPage.Controls.Add(rtf);
-            TabControlSQL.TabPages.Add(newTabPage);
-            
+
         }
 
         private void btnRunSQL_Click(object sender, EventArgs e)
@@ -371,5 +355,126 @@ namespace Sqlite_Database_Manager
 
             }
         }
+
+        private void btnSaveSQL_Click(object sender, EventArgs e)
+        {
+            TabPage selectedTab = TabControlSQL.SelectedTab;
+
+                foreach (TabPage tab in TabControlSQL.TabPages)
+                {
+
+                    if (tab == selectedTab)
+                    {
+                        foreach (Control control in tab.Controls)
+                        {
+                            if (control is CustomRichTextBox)
+                            {
+                                SaveFileDialog sfd = new SaveFileDialog();
+                                sfd.Filter = "Text|*.txt|All|*.*";
+                                if (sfd.ShowDialog() == DialogResult.OK)
+                                {
+                                    
+                                    System.IO.File.WriteAllText(sfd.FileName, control.Text);
+                                }
+
+                            }
+                        }
+
+
+                    }
+                }
+            
+
+
+        }
+
+        private void btnOpenSQL_Click(object sender, EventArgs e)
+        {
+            TabPage selectedTab = TabControlSQL.SelectedTab;
+            if (TabControlSQL.TabCount > 0) {
+                foreach (TabPage tab in TabControlSQL.TabPages)
+                {
+
+                    if (tab == selectedTab)
+                    {
+                        foreach (Control control in tab.Controls)
+                        {
+                            if (control is CustomRichTextBox)
+                            {
+                                OpenFileDialog ofd = new OpenFileDialog();
+                                ofd.Filter = "Text|*.txt|All|*.*";
+                                if (ofd.ShowDialog() == DialogResult.OK)
+                                {
+                                    string file = ofd.FileName;
+                                    if (File.Exists(file))
+                                    {
+                                        using (StreamReader sr = new StreamReader(file))
+                                        {
+                                            control.Text = sr.ReadToEnd();
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+
+
+                    }
+                }
+            }
+            else
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "Text|*.txt|All|*.*";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    TabPage tp = addNewTabePage();
+                    foreach (Control control in tp.Controls)
+                    {
+                        if (control is CustomRichTextBox)
+                        {
+
+                            string file = ofd.FileName;
+                            if (File.Exists(file))
+                            {
+                                using (StreamReader sr = new StreamReader(file))
+                                {
+                                    control.Text = sr.ReadToEnd();
+                                }
+                            }
+
+
+                        }
+                    }
+                }
+            }
+           
+           
+
+
+        }
+        private TabPage addNewTabePage()
+        {
+            int nextTabNumber = 1; 
+            foreach (TabPage tabPage in TabControlSQL.TabPages)
+            {
+                if (tabPage.Text.StartsWith("SQL") && int.TryParse(tabPage.Text.Substring(3), out int tabNumber))
+                {
+                    if (tabNumber >= nextTabNumber)
+                    {
+                        nextTabNumber = tabNumber + 1;
+                    }
+                }
+            }
+
+            TabPage newTabPage = new TabPage($"SQL{nextTabNumber}");
+            RichTextBox rtf = new CustomRichTextBox();
+            rtf.Dock = DockStyle.Fill;
+            rtf.Name = $"rtfSQLquery{nextTabNumber.ToString()}";
+            newTabPage.Controls.Add(rtf);
+            TabControlSQL.TabPages.Add(newTabPage);
+            return newTabPage;
+        }
+
     }
 }

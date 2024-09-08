@@ -28,14 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelControlBar = new System.Windows.Forms.Panel();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnMini = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageMain = new System.Windows.Forms.TabPage();
+            this.labelTextDataType = new System.Windows.Forms.Label();
+            this.labelDataType = new System.Windows.Forms.Label();
             this.labelInhalt = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -49,22 +54,18 @@
             this.dataGridViewEditTable = new System.Windows.Forms.DataGridView();
             this.tabPageSQL = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TabControlSQL = new Sqlite_Database_Manager.CustomTabControl();
+            this.button3 = new System.Windows.Forms.Button();
+            this.btnSaveSQL = new System.Windows.Forms.Button();
+            this.btnOpenSQL = new System.Windows.Forms.Button();
+            this.btnRunSQL = new System.Windows.Forms.Button();
             this.dataGridViewSQLquery = new System.Windows.Forms.DataGridView();
             this.richTextBoxAusgabeQuery = new System.Windows.Forms.RichTextBox();
-            this.labelDataType = new System.Windows.Forms.Label();
-            this.labelTextDataType = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnRunSQL = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnMini = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.TabControlSQL = new Sqlite_Database_Manager.CustomTabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.label4 = new System.Windows.Forms.Label();
             this.panelControlBar.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl.SuspendLayout();
             this.tabPageMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -74,7 +75,6 @@
             this.tabPageSQL.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSQLquery)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControlBar
@@ -148,6 +148,41 @@
             this.label2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form_MouseMove);
             this.label2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form_MouseUp);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(21, 21);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form_MouseUp);
+            // 
+            // btnMini
+            // 
+            this.btnMini.BackColor = System.Drawing.Color.Transparent;
+            this.btnMini.BackgroundImage = global::Sqlite_Database_Manager.Properties.Resources.icons8_minimize_window_152;
+            this.btnMini.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnMini.Location = new System.Drawing.Point(961, 2);
+            this.btnMini.Name = "btnMini";
+            this.btnMini.Size = new System.Drawing.Size(20, 20);
+            this.btnMini.TabIndex = 6;
+            this.btnMini.UseVisualStyleBackColor = false;
+            this.btnMini.Click += new System.EventHandler(this.btnMini_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.BackgroundImage = global::Sqlite_Database_Manager.Properties.Resources.icons8_close_15_trans;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnClose.Location = new System.Drawing.Point(982, 2);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(20, 20);
+            this.btnClose.TabIndex = 0;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // tabControl
             // 
             this.tabControl.BackColor = global::Sqlite_Database_Manager.Properties.Settings.Default.SILVER;
@@ -176,6 +211,30 @@
             this.tabPageMain.Size = new System.Drawing.Size(973, 447);
             this.tabPageMain.TabIndex = 0;
             this.tabPageMain.Text = "Datenbank Struktur";
+            // 
+            // labelTextDataType
+            // 
+            this.labelTextDataType.AutoSize = true;
+            this.labelTextDataType.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTextDataType.ForeColor = System.Drawing.Color.Black;
+            this.labelTextDataType.Location = new System.Drawing.Point(759, 9);
+            this.labelTextDataType.Name = "labelTextDataType";
+            this.labelTextDataType.Size = new System.Drawing.Size(99, 25);
+            this.labelTextDataType.TabIndex = 10;
+            this.labelTextDataType.Text = "Datentyp:";
+            this.labelTextDataType.Visible = false;
+            // 
+            // labelDataType
+            // 
+            this.labelDataType.AutoSize = true;
+            this.labelDataType.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDataType.ForeColor = System.Drawing.Color.Black;
+            this.labelDataType.Location = new System.Drawing.Point(864, 9);
+            this.labelDataType.Name = "labelDataType";
+            this.labelDataType.Size = new System.Drawing.Size(20, 25);
+            this.labelDataType.TabIndex = 9;
+            this.labelDataType.Text = "/";
+            this.labelDataType.Visible = false;
             // 
             // labelInhalt
             // 
@@ -305,14 +364,14 @@
             this.dataGridViewEditTable.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridViewEditTable.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridViewEditTable.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewEditTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewEditTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewEditTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewEditTable.Location = new System.Drawing.Point(3, 42);
             this.dataGridViewEditTable.Name = "dataGridViewEditTable";
@@ -337,8 +396,8 @@
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.TabControlSQL);
             this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnSaveSQL);
+            this.panel2.Controls.Add(this.btnOpenSQL);
             this.panel2.Controls.Add(this.btnRunSQL);
             this.panel2.Controls.Add(this.dataGridViewSQLquery);
             this.panel2.Controls.Add(this.richTextBoxAusgabeQuery);
@@ -347,6 +406,78 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(973, 447);
             this.panel2.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(366, 1);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(239, 32);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Datenbank-Abfrage";
+            // 
+            // TabControlSQL
+            // 
+            this.TabControlSQL.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this.TabControlSQL.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.TabControlSQL.Location = new System.Drawing.Point(4, 36);
+            this.TabControlSQL.Name = "TabControlSQL";
+            this.TabControlSQL.Padding = new System.Drawing.Point(10, 0);
+            this.TabControlSQL.SelectedIndex = 0;
+            this.TabControlSQL.Size = new System.Drawing.Size(964, 178);
+            this.TabControlSQL.TabIndex = 7;
+            // 
+            // button3
+            // 
+            this.button3.Image = global::Sqlite_Database_Manager.Properties.Resources.icons8_new_tab_20;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(784, 7);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(101, 23);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Neue Abfrage";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // btnSaveSQL
+            // 
+            this.btnSaveSQL.Image = global::Sqlite_Database_Manager.Properties.Resources.icons8_speichern_20;
+            this.btnSaveSQL.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSaveSQL.Location = new System.Drawing.Point(38, 7);
+            this.btnSaveSQL.Name = "btnSaveSQL";
+            this.btnSaveSQL.Size = new System.Drawing.Size(28, 23);
+            this.btnSaveSQL.TabIndex = 5;
+            this.btnSaveSQL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSaveSQL.UseVisualStyleBackColor = true;
+            this.btnSaveSQL.Click += new System.EventHandler(this.btnSaveSQL_Click);
+            // 
+            // btnOpenSQL
+            // 
+            this.btnOpenSQL.Image = global::Sqlite_Database_Manager.Properties.Resources.icons8_ordner_öffnen_20;
+            this.btnOpenSQL.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOpenSQL.Location = new System.Drawing.Point(4, 7);
+            this.btnOpenSQL.Name = "btnOpenSQL";
+            this.btnOpenSQL.Size = new System.Drawing.Size(28, 23);
+            this.btnOpenSQL.TabIndex = 4;
+            this.btnOpenSQL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOpenSQL.UseVisualStyleBackColor = true;
+            this.btnOpenSQL.Click += new System.EventHandler(this.btnOpenSQL_Click);
+            // 
+            // btnRunSQL
+            // 
+            this.btnRunSQL.Image = global::Sqlite_Database_Manager.Properties.Resources.icons8_spielen_20;
+            this.btnRunSQL.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRunSQL.Location = new System.Drawing.Point(913, 7);
+            this.btnRunSQL.Name = "btnRunSQL";
+            this.btnRunSQL.Size = new System.Drawing.Size(55, 23);
+            this.btnRunSQL.TabIndex = 3;
+            this.btnRunSQL.Text = "Run";
+            this.btnRunSQL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRunSQL.UseVisualStyleBackColor = true;
+            this.btnRunSQL.Click += new System.EventHandler(this.btnRunSQL_Click);
             // 
             // dataGridViewSQLquery
             // 
@@ -367,122 +498,6 @@
             this.richTextBoxAusgabeQuery.TabIndex = 1;
             this.richTextBoxAusgabeQuery.Text = "";
             // 
-            // labelDataType
-            // 
-            this.labelDataType.AutoSize = true;
-            this.labelDataType.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDataType.ForeColor = System.Drawing.Color.Black;
-            this.labelDataType.Location = new System.Drawing.Point(864, 9);
-            this.labelDataType.Name = "labelDataType";
-            this.labelDataType.Size = new System.Drawing.Size(20, 25);
-            this.labelDataType.TabIndex = 9;
-            this.labelDataType.Text = "/";
-            this.labelDataType.Visible = false;
-            // 
-            // labelTextDataType
-            // 
-            this.labelTextDataType.AutoSize = true;
-            this.labelTextDataType.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTextDataType.ForeColor = System.Drawing.Color.Black;
-            this.labelTextDataType.Location = new System.Drawing.Point(759, 9);
-            this.labelTextDataType.Name = "labelTextDataType";
-            this.labelTextDataType.Size = new System.Drawing.Size(99, 25);
-            this.labelTextDataType.TabIndex = 10;
-            this.labelTextDataType.Text = "Datentyp:";
-            this.labelTextDataType.Visible = false;
-            // 
-            // button3
-            // 
-            this.button3.Image = global::Sqlite_Database_Manager.Properties.Resources.icons8_new_tab_20;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(784, 7);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(101, 23);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Neue Abfrage";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.Image = global::Sqlite_Database_Manager.Properties.Resources.icons8_speichern_20;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(38, 7);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(28, 23);
-            this.button2.TabIndex = 5;
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Image = global::Sqlite_Database_Manager.Properties.Resources.icons8_ordner_öffnen_20;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(4, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(28, 23);
-            this.button1.TabIndex = 4;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // btnRunSQL
-            // 
-            this.btnRunSQL.Image = global::Sqlite_Database_Manager.Properties.Resources.icons8_spielen_20;
-            this.btnRunSQL.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRunSQL.Location = new System.Drawing.Point(913, 7);
-            this.btnRunSQL.Name = "btnRunSQL";
-            this.btnRunSQL.Size = new System.Drawing.Size(55, 23);
-            this.btnRunSQL.TabIndex = 3;
-            this.btnRunSQL.Text = "Run";
-            this.btnRunSQL.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRunSQL.UseVisualStyleBackColor = true;
-            this.btnRunSQL.Click += new System.EventHandler(this.btnRunSQL_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(21, 21);
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form_MouseDown);
-            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form_MouseMove);
-            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form_MouseUp);
-            // 
-            // btnMini
-            // 
-            this.btnMini.BackColor = System.Drawing.Color.Transparent;
-            this.btnMini.BackgroundImage = global::Sqlite_Database_Manager.Properties.Resources.icons8_minimize_window_152;
-            this.btnMini.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnMini.Location = new System.Drawing.Point(961, 2);
-            this.btnMini.Name = "btnMini";
-            this.btnMini.Size = new System.Drawing.Size(20, 20);
-            this.btnMini.TabIndex = 6;
-            this.btnMini.UseVisualStyleBackColor = false;
-            this.btnMini.Click += new System.EventHandler(this.btnMini_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.BackColor = System.Drawing.Color.Transparent;
-            this.btnClose.BackgroundImage = global::Sqlite_Database_Manager.Properties.Resources.icons8_close_15_trans;
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnClose.Location = new System.Drawing.Point(982, 2);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(20, 20);
-            this.btnClose.TabIndex = 0;
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // TabControlSQL
-            // 
-            this.TabControlSQL.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.TabControlSQL.Location = new System.Drawing.Point(4, 36);
-            this.TabControlSQL.Name = "TabControlSQL";
-            this.TabControlSQL.SelectedIndex = 0;
-            this.TabControlSQL.Size = new System.Drawing.Size(964, 178);
-            this.TabControlSQL.TabIndex = 7;
-            // 
             // tabPage1
             // 
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -492,17 +507,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(366, 1);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(239, 32);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Datenbank-Abfrage";
             // 
             // FormMain
             // 
@@ -523,6 +527,7 @@
             this.panelControlBar.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.tabPageMain.ResumeLayout(false);
             this.tabPageMain.PerformLayout();
@@ -535,7 +540,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSQLquery)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -568,8 +572,8 @@
         private System.Windows.Forms.Button btnRunSQL;
         private System.Windows.Forms.DataGridView dataGridViewSQLquery;
         private System.Windows.Forms.RichTextBox richTextBoxAusgabeQuery;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSaveSQL;
+        private System.Windows.Forms.Button btnOpenSQL;
         private System.Windows.Forms.Label labelTextDataType;
         private System.Windows.Forms.Label labelDataType;
         private System.Windows.Forms.Button button3;
